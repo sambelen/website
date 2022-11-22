@@ -1,0 +1,141 @@
+{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
+  %}
+  <div class="containe mt-5" style="height: 100vh">
+    <div class="w-100" style="background-color: #FBFBFB; border-radius: 10px; padding: 15px">
+      <form method="POST">
+        <div class='d-flex justify-content-end'>
+          <div class='d-flex justify-content-end'>
+            <div class="form-group">
+              <label for="email" class='text-muted'>Email Address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Enter email"
+              />
+            </div>
+            <div class="form-group mx-2">
+              <label for="password" class='text-muted'>Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn btnKulay">Login</button>          
+        </div>        
+      </form>      
+    </div>
+    <hr style="background-color: #EFE8DE !important">
+    <div class="carousel w-100 text-center" style="border-radius: 10px">
+      <div class="slides">
+        <img src="{{ url_for('static', filename='main.png') }}" alt="slide image" class="slide">
+        <img src="{{ url_for('static', filename='main2.png') }}" alt="slide image" class="slide">
+        <img src="{{ url_for('static', filename='main3.jpg') }}" alt="slide image" class="slide">
+      </div>
+      <div class="controls">
+        <div class="control prev-slide">&#9668;</div>
+        <div class="control next-slide">&#9658;</div>
+      </div>
+    </div>
+    <hr style="background-color: #EFE8DE !important">
+    <h6 class="heading text-muted" style="margin-top: -10px !important">Gallery</h6>
+    <div class="gallery-image" style="background-color: #FBFBFB; border-radius: 10px; padding: 15px">
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='gallery1.jpg') }}" alt="" />
+        <div class="transparent-box">
+          <div class="caption">
+            <p>Title</p>
+            <p class="opacity-low">Sub-Title</p>
+          </div>
+        </div> 
+      </div>
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='gallery2.png') }}" alt="" />
+        <div class="transparent-box">
+          <div class="caption">
+            <p>Title</p>
+            <p class="opacity-low">Sub-Title</p>
+          </div>
+        </div>
+      </div>
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='gallery3.jpeg') }}" alt="" />
+        <div class="transparent-box">
+          <div class="caption">
+            <p>Title</p>
+            <p class="opacity-low">Sub-Title</p>
+          </div>
+        </div>
+      </div>
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='gallery5.jpg') }}" alt="" />
+        <div class="transparent-box">
+          <div class="caption">
+            <p>Title</p>
+            <p class="opacity-low">Sub-Title</p>
+          </div>
+        </div> 
+      </div>
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='gallery6.jpg') }}" alt="" />
+        <div class="transparent-box">
+          <div class="caption">
+            <p>Sea</p>
+            <p class="opacity-low">Cityscape</p>
+          </div>
+        </div> 
+      </div>
+      <div class="img-box">
+        <img src="{{ url_for('static', filename='gallery.jpg') }}" alt="" />
+        <div class="transparent-box">
+          <div class="caption">
+            <p>Vintage</p>
+            <p class="opacity-low">Cinematic</p>
+          </div>
+        </div> 
+      </div>
+    </div>
+  </div>  
+  <script>
+    const delay = 3000; //ms
+
+    const slides = document.querySelector(".slides");
+    const slidesCount = slides.childElementCount;
+    const maxLeft = (slidesCount - 1) * 100 * -1;
+
+    let current = 0;
+
+    function changeSlide(next = true) {
+      if (next) {
+        current += current > maxLeft ? -100 : current * -1;
+      } else {
+        current = current < 0 ? current + 100 : maxLeft;
+      }
+
+      slides.style.left = current + "%";
+    }
+
+    let autoChange = setInterval(changeSlide, delay);
+    const restart = function() {
+      clearInterval(autoChange);
+      autoChange = setInterval(changeSlide, delay);
+    };
+
+    // Controls
+    document.querySelector(".next-slide").addEventListener("click", function() {
+      changeSlide();
+      restart();
+    });
+
+    document.querySelector(".prev-slide").addEventListener("click", function() {
+      changeSlide(false);
+      restart();
+    });
+  </script>
+  {% endblock %}
+  

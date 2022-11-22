@@ -1,0 +1,291 @@
+
+
+.heading {
+    text-align: center;
+    font-size: 2.0em;
+    letter-spacing: 1px;
+    padding: 40px;
+    color: white;
+}
+
+.gallery-image {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.gallery-image img {
+  height: 250px;
+  width: 350px;
+  transform: scale(1.0);
+  transition: transform 0.4s ease;
+}
+
+.img-box {
+  border-radius: 10px;
+  box-sizing: content-box;
+  margin: 10px;
+  height: 250px;
+  width: 350px;
+  overflow: hidden;
+  display: inline-block;
+  color: white;
+  position: relative;
+  background-color: white;
+}
+
+.caption {
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+  opacity: 0.0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.transparent-box {
+  height: 250px;
+  width: 350px;
+  background-color:rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: background-color 0.3s ease;
+}
+
+.img-box:hover img { 
+  transform: scale(1.1);
+}
+
+.img-box:hover .transparent-box {
+  background-color:rgba(0, 0, 0, 0.5);
+}
+
+.img-box:hover .caption {
+  transform: translateY(-20px);
+  opacity: 1.0;
+}
+
+.img-box:hover {
+  cursor: pointer;
+}
+
+.caption > p:nth-child(2) {
+  font-size: 0.8em;
+}
+
+.opacity-low {
+  opacity: 0.5;
+}
+
+th
+{
+  text-align: center !important;
+  padding-top: 7px !important;
+  padding-bottom: 7px !important;
+}
+tbody>tr>:nth-child(2),tbody>tr>:nth-child(3){
+  color:red;
+  width:200px;
+  text-align:center;
+ }
+
+ tbody>tr>:nth-child(1),tbody>tr>:nth-child(4),tbody>tr>:nth-child(5){
+  padding: 0px 10px;
+  text-align:center;
+ }
+#DataTables_Table_0_filter
+{  
+  float: right !important;
+  margin-top: -5% !important;
+}
+#DataTables_Table_0_length
+{
+  float: left !important;
+  margin-top: -5% !important;
+}
+ #DataTables_Table_0_paginate
+ {
+  margin-top: 15px !important;
+  float: right !important;
+ }
+ #DataTables_Table_0_info
+ {
+  margin-top: 15px !important;
+  float: left !important;
+ }
+
+
+/* CSS */
+#DataTables_Table_0_previous, #DataTables_Table_0_next, .btnKulay {
+  margin: 5px;
+  background-color: #FFFFFF;
+  border: 1px solid rgb(209,213,219);
+  border-radius: .4rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.btnKulay {
+  margin: 5px;
+  background-color: #FFFFFF;
+  border: 1px solid rgb(209,213,219);
+  border-radius: .4rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .4rem 1rem;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+#DataTables_Table_0_previous:hover, #DataTables_Table_0_next:hover, #btnKulay:hover {
+  background-color: rgb(249,250,251);
+}
+
+#DataTables_Table_0_previous:focus, #DataTables_Table_0_next:focus, #btnKulay:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+#DataTables_Table_0_previous:focus-visible, #DataTables_Table_0_next:focus-visible, #btnKulay:focus-visible {
+  box-shadow: none;
+}
+.paginate_button
+{
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.paginate_button:hover
+{
+  color: rgb(0, 17, 255) !important;
+}
+.overlay{
+  opacity:0.8;
+  background-color:#ccc;
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  z-index: 998 !important;
+}
+.mikepad-loading {
+  width : 150px;
+  position: absolute;
+  top: 50%;
+  left : 50%;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  -moz-transform: translateY(-50%) translateX(-50%);
+  -o-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.mikepad-loading .binding {
+  content : '';
+  width : 37px;
+  height : 4px;
+  border : 2px solid #ff0000;
+  margin : 0 auto;
+}
+
+.mikepad-loading .pad {
+  width : 35px;
+  height : 28px;
+  border : 2px solid #ff0000;
+  border-top : 0;
+  padding : 6px;
+  margin : 0 auto;
+}
+
+.mikepad-loading .line {
+  width : 15px;
+  margin-top : 4px;
+  border-top : 2px solid #ff0000;
+  opacity : 0;
+  -webkit-animation : writeline 3s infinite ease-in;
+  -moz-animation : writeline 3s infinite ease-in;
+  -o-animation : writeline 3s infinite ease-in;
+  animation : writeline 3s infinite ease-in;
+}
+
+.mikepad-loading .line:first-child {
+  margin-top : 0;
+}
+
+.mikepad-loading .line.line1 {
+  -webkit-animation-delay: 0s;
+  -moz-animation-delay: 0s;
+  -o-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+.mikepad-loading .line.line2 {
+  -webkit-animation-delay: 0.5s;
+  -moz-animation-delay: 0.5s;
+  -o-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+.mikepad-loading .line.line3 {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -o-animation-delay: 1s;
+  animation-delay : 1s;
+}
+
+.mikepad-loading .text {
+  text-align : center;
+  margin-top : 10px;
+  font-size : 14px;
+  color : #ff0000;
+}
+
+@-webkit-keyframes writeline {
+  0% { width : 0px; opacity: 0; }
+  33% { width : 15px; opacity : 1; }
+  70% { opacity : 1; }
+  100% {opacity : 0; }
+}
+
+@-moz-keyframes writeline {
+  0% { width : 0px; opacity: 0; }
+  33% { width : 15px; opacity : 1; }
+  70% { opacity : 1; }
+  100% {opacity : 0; }
+}
+
+@-o-keyframes writeline {
+  0% { width : 0px; opacity: 0; }
+  33% { width : 15px; opacity : 1; }
+  70% { opacity : 1; }
+  100% {opacity : 0; }
+}
+
+@keyframes writeline {
+  0% { width : 0px; opacity: 0; }
+  33% { width : 15px; opacity : 1; }
+  70% { opacity : 1; }
+  100% {opacity : 0; }
+}

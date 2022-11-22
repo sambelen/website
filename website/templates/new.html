@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="HTML/CSS">
+  <meta name="author" content="Crime">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='badge.ico') }}"/>
+  <title>Crime</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='new.css') }}"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dugo.css') }}"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"/> -->
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='banner.css') }}"/> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='gallery.css') }}"/>
+  <!-- <link href="{{url_for("static", filename="filepond_modified.css")}}" rel="stylesheet"> -->
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="loadings" class="overlay">
+  <div class="mikepad-loading">
+    <div class="binding"></div>
+    <div class="pad">
+      <div class="line line1"></div>
+      <div class="line line2"></div>
+      <div class="line line3"></div>
+    </div>
+    <div class="text animate__animated animate__bounce animate__infinite	infinite">
+      Analyzing Data...
+    </div>
+  </div>
+</div>
+  <div class="{% if not user.is_authenticated %}header {% endif %}" id="topheader">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" {% if user.is_authenticated %} style="background-color: #0C2D48;" {% endif %}>
+      <div class="container text-uppercase p-2">
+        <a class="navbar-brand font-weight-bold text-white" href="#">Crime Prediction</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" style="width: 33vw;">
+              <div style="width: 300px;"></div>
+            </li>
+            {% if not user.is_authenticated %}
+            <li class="nav-item">
+              <form method="POST">
+              <div class="wrapper">
+                <div class="login">
+                  <input type="text" spellcheck="false" placeholder="Username" maxlength="20" style="color: #fff !important" name="email" id="email">
+                </div>
+             </div>
+            </li>
+            <li class="nav-item">
+              <div class="wrapper">
+                <div class="login">
+                  <input type="password" spellcheck="false" placeholder="Password" maxlength="20" style="color: #fff !important" name="password" id="password">
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <button type="submit" class="button-37" role="button">Login</button>
+            </form>
+            </li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>     
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% if not user.is_authenticated %}
+    <section class="header-section">
+      <div class="center-div">
+        <h1 class="font-weight-bold">Crime Prediction Using CNN-LSTM</h1>
+        <p>Sub Title</p>
+        <div class="header-buttons">
+          <a href="#newsletterdiv">AboutUs</a>
+          <a href="#contactdiv">Contact Us</a>
+        </div>
+      </div>
+    </section>    
+  {% endif %} 
+  </div>
+
+  <!-- ***************** header part end ************************** -->
+  {% if user.is_authenticated %}
+<br><br>
+  <div class="container">
+    {% if araw %}
+    <section class="survival" style="margin-bottom: -7% !important;">
+      <h3 class="survival bleeding" style="font-family: 'Creepster', cursive !important;">{{araw}}</h3><h3 style="font-family: 'Creepster', cursive !important;">Crime Date Range</h3>
+    </section>
+    {% endif %}
+    <div class="w-100 text-center px-5">
+      {{summaryData}}
+     </div>
+    <div class="d-flex w-100 justify-content-center">
+      <div class="w-25">
+        <form method="POST" action="/home" enctype="multipart/form-data">
+          {{form.hidden_tag()}}
+          <h5 class="text-muted mt-5">Upload Data</h5>
+          <hr class="text-muted" />
+          <div class="custom-file">
+            <input
+              type="file"
+              class="custom-file-input"
+              name="file"
+              id="customFile"
+              accept=".csv" 
+            />
+            <label class="custom-file-label" for="customFile"  data-js-label>Choose CSV File</label
+            >
+          </div>
+          <div class="mt-5">
+            <h5 class="text-muted">Set Date Range</h5>
+            <hr class="text-muted" />
+            <div class="form-group">
+              <label for="inputStartDate">Start Date</label>
+              <input
+                id="inputStartDate"
+                class="form-control"
+                name="startDate"
+                type="date"
+              />
+            </div>
+            <div class="form-group">
+              <label for="inputStartDate">End Date</label>
+              <input
+                id="inputStartDate"
+                class="form-control"
+                name="endDate"
+                type="date"
+              />
+            </div>
+            <div
+              class="d-flex w-100 justify-content-end"
+              style="margin-top: -20px !important"
+            >
+              <input class="btn btnKulay mt-2" type="submit" value="Submit" onclick="$('#loadings').show()"/>
+            </div>
+          </div>
+        </form>
+        <br><br><br>
+        <div class="w-100 card mt-5">
+          <table class="table table-sm table-responsive">
+            <tr>
+              <td class="text-start" style="width: 200px">
+                MSE error:
+              </td>
+              <td>
+                {{ mseData }}
+              </td>
+            </tr>
+            <tr>
+              <td class="text-start" style="width: 200px">
+                RMSE error:
+              </td>
+              <td>
+                {{ rmseData }}
+              </td>
+            </tr>
+            <tr>
+              <td class="text-start" style="width: 200px">
+                Mean:
+              </td>
+              <td>
+                {{ meanData }}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="w-75">
+        <div class="mx-3 w-100 d-flex justify-content-center mt-5">
+          <div class="w-50 card mx-1">
+            <img src="{{ url_for('static', filename='pic.png') }}" alt='data-image'>
+          </div>
+          <div class="w-50 card mx-1">
+            <img src="{{ url_for('static', filename='pic3.png') }}" alt='data-image'>
+          </div>
+        </div>
+        <div class="mx-3 w-100 card mt-2 p-2">
+          <h5 class="text-muted">Date Plot</h5>
+          <img class="w-100" src="{{ url_for('static', filename='pic2.png') }}" alt='data-image'>
+        </div>
+        <div class="mx-3 w-100 card p-2 mt-2">
+          <h5 class="text-muted">Prediction</h5>
+          <img class="w-100" src="{{ url_for('static', filename='pic4.png') }}" alt='data-image'>
+        </div>
+      </div>
+    </div>
+    <hr class="text-muted mt-5" />
+    <h5 class="text-muted">Csv Data</h5><br>
+    <hr class="text-muted" />
+    <div class="w-100 text-center px-5">
+      {% for table in tables %} {{table | safe }} {% endfor %}
+    </div>
+  </div>
+  {% endif %} 
+  <!-- ********************* three extra header div starts ******************** -->
+
+  <section class="header-extradiv">
+  <hr><br>
+    <div class="container">
+      <div class="row">
+        <div class="extradiv col-lg-4 col-md-4 col-12">
+          <a href="#"><i class="fa fa-line-chart palakihin"></i></a>
+          <h2>Crime Rate</h2>
+          <p class="text-muted">Crime rates were particularly high in poorer neighborhoods and areas with larger populations and higher unemployment. Philippines was among those with the highest incarceration rate in every hundred thousand inhabitants.</p>
+        </div>
+        <div class="extradiv col-lg-4 col-md-4 col-12">
+          <a href="#"><i class="fa fa-bar-chart palakihin"></i></a>
+          <h2>Incident Report</h2>
+          <p class="text-muted">Illegal drug trade, human trafficking, arms trafficking, murder, corruption and domestic violence remain significant concerns. The Philippines has a high rate of murder cases, which is the highest in Southeast Asia as of 2014.</p>
+        </div>
+        <div class="extradiv col-lg-4 col-md-4 col-12">
+          <a href="#"><i class="fa fa-gavel palakihin"></i></a>
+          <h2>Prevention</h2>
+          <p class="text-muted">"Effective, responsible crime prevention enhances the quality of life of all citizens. It has long-term benefits in terms of reducing the costs associated with the formal criminal justice system, as well as other social costs that result from crime."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+<hr>
+  <!-- ********************* three extra header div starts ******************** -->
+
+  <section class="happyclients">
+    <div class="container headings text-center">
+      <h3 class="text-center font-weight mb-4">Gallery</h3>
+    </div>
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+
+      <!-- The slideshow -->
+      <div class="carousel-inner container">
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-12">
+              <div class="box" id="una">
+                <p class="m-4 mt-5 text-white">Add details</p>
+                <h1 class="text-white">Topic</h1>
+                <h2 class="text-white">Sub-topic</h2>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+              <div class="box" id="ngalawa">
+                <p class="m-4 mt-5 text-white">Add details</p>
+                <h1 class="text-white">Topic</h1>
+                <h2 class="text-white">Sub-topic</h2>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+              <div class="box" id="ngatlo">
+                <p class="m-4 mt-5 text-white">Add details</p>
+                <h1 class="text-white">Topic</h1>
+                <h2 class="text-white">Sub-topic</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-12">
+              <div class="box" id="apat">
+                <p class="m-4 mt-5 text-white">Add details</p>
+                <h1 class="text-white">Topic</h1>
+                <h2 class="text-white">Sub-topic</h2>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+              <div class="box" id="lima">
+                <p class="m-4 mt-5 text-white">Add details</p>
+                <h1 class="text-white">Topic</h1>
+                <h2 class="text-white">Sub-topic</h2>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-12">
+              <div class="box" id="anim">
+                <p class="m-4 mt-5 text-white">Add details</p>
+                <h1 class="text-white">Topic</h1>
+                <h2 class="text-white">Sub-topic</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+
+    </div>
+  </section>
+
+
+
+
+  <!-- ********************* project (completed) starts ****************************** -->
+
+  <section class="project-work">
+    <div class="container headings text-center">
+      <p class="text-center font-weight-bold">Number of focus crimes Philippines 2021</p>
+    </div>
+    <div class="container d-flex justify-content-around align-items-center text-center">
+      <div>
+        <div class="d-flex"><h1 class="count">1500</h1></div>
+        <p>Rape</p>
+      </div>
+
+      <div>
+        <div class="d-flex"><h1 class="count">1500</h1></div>
+        <p>Murder</p>
+      </div>
+
+      <div>
+        <div class="d-flex"><h1 class="count">1500</h1></div>
+        <p>Theft</p>
+      </div>
+
+      <div>
+        <div class="d-flex"><h1 class="count">1500</h1></div>
+        <p>Violence</p>
+      </div>
+    </div>
+  </section>
+  <!-- ********************* project (completed) ends ****************************** -->
+
+
+  <!-- ********************* foter starts ****************************** -->
+
+  <footer class="footersection" id="footerdiv">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-12 footer-div">
+          <div>
+            <h3>ABOUT</h3>
+            <p>Add here</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-12 footer-div">
+          <div class="footer-navlinks">
+            <h3>Social Media Links</h3>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Twitter</a></li>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-12 col-12 footer-div">
+          <div>
+            <h3>Contact Us</h3>
+            <p>Emergency Hotline</p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 text-center">
+        <p>Copyright &copy;2022 All rights reserved | Crime Prediction using hybrid(CNN-LSTM)</p>
+      </div>
+      <div class="scrolltop float-right">
+        <i class="fa fa-arrow-up" onclick="topFunction()" id="myBtn"></i>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ********************* footer ends ****************************** -->
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha256-jDnOKIOq2KNsQZTcBTEnsp76FnfMEttF6AV2DF2fFNE=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha256-JtQPj/3xub8oapVMaIijPNoM0DHoAtgh/gwFYuN5rik=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script> 
+  <script src="http://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript">
+
+    var inputs = document.querySelectorAll('.custom-file')
+
+    for (var i = 0, len = inputs.length; i < len; i++) {
+      customInput(inputs[i])
+    }
+
+    function customInput (el) {
+      const fileInput = el.querySelector('[type="file"]')
+      const label = el.querySelector('[data-js-label]')
+      
+      fileInput.onchange =
+      fileInput.onmouseout = function () {
+        console.log('nagbago')
+        if (!fileInput.value) return
+        
+        var value = fileInput.value.replace(/^.*[\\\/]/, '')
+        el.className += ' -chosen'
+        label.innerText = value
+      }
+    }
+    $(window).on('load',(event)=>{
+      $('#loadings').hide();
+    })
+    $(document).ready(function(){
+      var table; 
+      $(document).ready(function() {
+        table =   $('.dataframe').DataTable();
+      } );
+    })
+  $('.count').counterUp({
+    delay:10,
+    time:300
+  })
+  // Get the button:
+  mybutton = document.getElementById("myBtn");
+
+  //When the user scrolls down 20px from the top of the document, show the buttons
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction(){
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+  //When the user clicks on the button, scroll to the top of the document
+  function topFunction(){
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
+  </script>
+</body>
+</html>

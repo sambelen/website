@@ -1,0 +1,11 @@
+{% extends 'sample_form_base.html' %}
+
+{% block filepond_libs %}
+{{super()}}
+<script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
+{% endblock %} 
+
+
+{% block filepond_script_example %}
+<script src={{url_for("static", filename="file_upload_using_filepond_jquery.js")}}></script>
+{% endblock %}

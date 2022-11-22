@@ -1,0 +1,435 @@
+html{
+    scroll-behavior: smooth;
+  }
+  *{margin: 0;padding: 0;box-sizing: border-box;font-family: 'Poppins', sans-serif;}
+  a{text-decoration: none;}
+  a:hover{text-decoration: none;}
+  li{list-style: none;}
+  p{
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-weight: 400;
+    color: #606060;
+  }
+  .extradiv h2, .servicediv h2{
+    font-size: 0.9rem;
+    margin: 20px 0 15px 0;
+    font-weight: bold;
+    line-height: 1.1;
+    word-spacing: 4px;
+  }
+  i{
+    color: #272727;
+  }
+  .frostedDiv {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 400px; height: 300px;
+    margin: -150px 0 0 -200px;
+    padding: 1em;
+    border: 1px solid rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    box-sizing: border-box;
+    background: rgba(255,255,255,.2);
+    font: 150%/1.6 sans-serif;
+    text-align: center;
+    box-shadow: -1px -1px 10px rgba(255,255,255,.3) inset,
+      2px 2px 20px rgba(0,0,0,.5);
+    text-shadow: 0 1px 1px rgba(255,255,255,.6);
+  }
+  .wrapper{
+    width: 250px; height: auto;
+    padding: .3em;
+    border: 1px solid rgba(255,255,255,0);
+    border-radius: 7px;
+    box-sizing: border-box;
+    font: 100%/1.6 sans-serif;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255,255,255,.6);
+}
+.wrapper .login{
+  height: 30px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+}
+/* <li class="nav-item active">
+<a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="#">Register</a>
+</li> */
+/* CSS */
+.button-37 {
+  background-color: #13aa52;
+  border: 1px solid #13aa52;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 3px 25px !important;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 5px;
+}
+
+.button-37:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .button-37 {
+    padding: 10px 30px;
+  }
+}
+.login input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-size: 15px;
+  caret-color: #00b4e6;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.1s ease;  
+  background-color: rgb(255,255,255,0.1) !important;
+  padding: 10px !important;
+}
+.login input::selection{
+  color: #fff;
+  background: #9b9b9b;	
+}
+.login input:focus,
+.login input:valid{
+  border-color: #6e7577;
+}
+.login input::placeholder{
+  color: #fff;
+}
+.frostedDiv:after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -1;
+  border-radius:inherit;
+  -webkit-filter: blur(3px);
+}
+  /*     $(document).ready(function(){
+      var empDataTable = $('#tableData').DataTable({
+          'processing' : true,
+          'serverSide' : true,
+          'serverMethod' : post,
+          'ajax' : {
+            'url' : 'ajaxfile'
+          },
+          'lengthMenu' : [[5,10,25,50,-1],[5,10,25,50,"All"]],
+          searching : true,
+          sort : false,
+          "serverSide" : true,
+          'columns' : [
+            { data: '' },
+            { data: 'DATE COMMITTED' },
+            { data: 'TIME COMMITTED' },
+            { data: 'CRIME' },
+            { data: 'ADDRESS' },
+          ]
+      })
+    }) */
+  .header{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(49, 49, 75, 0.568), rgba(49, 49, 75, 0.623)), url("gallery1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    clip-path: polygon(100% 0, 100% 77%, 50% 100%, 0 75%, 0 0);
+    position: relative;
+  }
+  .header::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.4;
+    z-index: -1;
+    background: linear-gradient(to right,  #363636 0%, #434343 0%, #212121 100%);
+  }
+  .navbar::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.4;
+    z-index: -1;
+    background: linear-gradient(to right,  #363636 0%, #434343 0%, #212121 100%);
+  }
+  .nav-item a{
+    color: #fff!important;
+    font-weight: bold;
+  }
+  .header-section{
+    width: 100%;
+    height: inherit;
+    color: #fff;
+    text-align: center;
+    position: relative;
+  }
+  .center-div{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+  }
+  .header-buttons a{
+    border: 1px solid #fff;
+    border-radius: 100px;
+    margin: 0 5px;
+    padding: 12px 35px;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: center;
+  }
+  .header-buttons a:hover{
+    text-decoration: none;
+    color: #434343;
+    background-color: #fff;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);
+  }
+  .center-div p{
+    font-size: 1.3rem;
+    padding: 10px 0 20px 0;
+    color: #fff;
+  }
+  /* ********************* three extra header div starts ******************** */
+  
+  .header-extradiv{
+    width: 100%;
+    height: auto;
+    margin: 100px 0;
+    text-align: center;
+  }
+  .extradiv p{text-align: justify;}
+  .extradiv{
+    background-color: #fff;
+    border: none;
+    padding: 30px!important;
+    border-radius: 3px;
+    transition: 0.3s;
+  }
+  .extradiv:hover{
+    box-shadow: -10px 0px 20px 0 rgba(0,0,0,0.3);
+    transform: translateY(-20px);
+  }
+  
+  /* ********************* three extra header div ends ******************** */
+
+  
+  /* ********************* project (completed) starts ****************************** */
+  
+  .project-work{
+    margin: 100px 0;
+  }
+  .project-work h1{
+    font-size: 2rem;
+    text-align: center;
+  }
+  #una
+  {
+    background-image: url('gallery7.jpg');
+    background-size: cover;
+  }
+  #ngalawa
+  {
+    background-image: url('gallery8.jpg');
+    background-size: cover;
+  }
+  #ngatlo
+  {
+    background-image: url('gallery2.png');
+    background-size: cover;
+  }
+  #apat
+  {
+    background-image: url('gallery3.jpeg');
+    background-size: cover;
+  }
+  #lima
+  {
+    background-image: url('gallery4.png');
+    background-size: cover;
+  }
+  #anim
+  {
+    background-image: url('gallery5.jpg');
+    background-size: cover;
+  }
+
+  /* ********************* project (completed) ends ****************************** */
+
+  
+    /* ********************* dagdag ******************************  */
+  
+  .happyclients{
+    width: 100%;
+    height: 60vh;
+    padding: 80px 0;
+  }
+  .box{
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.3);
+    border-radius: 2px;
+    transition: 0.3s ease;
+    height: 350px;
+  }
+  .box:hover{
+    background: #FF9100;
+  }
+  .box:hover p{
+    color: rgb(255, 187, 0);
+  }
+  .carousel-indicators{
+    position: absolute;
+    right: 0;
+    bottom: -60px!important;
+  }
+  .carousel-indicators li{
+    background-color: #363636!important;
+  }
+  .box a{
+    position: relative;
+  }
+  .box a img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 20px;
+  }
+  .box a::after{
+    content: "\f10d";
+    font-family: FontAwesome;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(to right, #707072 0%, #434343 0%, #212121 100%);
+    color: #fff;
+    position: absolute;
+    top: 120%;
+    left: 70%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .box h1{
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 10px;
+  }
+  .box h2{
+    font-size: 13px;
+    font-weight: 400;
+    color: #666666;
+    margin-bottom: 20px;
+  }
+    /* ********************* dagdag ******************************  */
+  
+.palakihin{
+    font-size: 50px !important;
+    color: #272727;
+}
+
+  
+  /* *********************  footer starts ****************************** */
+  
+  .footersection{
+    width: 100%;
+    height: auto;
+    padding: 70px 0 20px 0;
+    background: #212121;
+    position: relative;
+  }
+  .footersection p{
+    color: #fff;
+  }
+  .footer-navlinks{
+    text-align: center;
+  }
+  .footersection li a{
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-weight: 400;
+    color: #fff;
+    text-transform: capitalize;
+  }
+  .footersection h3{
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 25px;
+    font-size: 1.2rem!important;
+    font-weight: 600;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  }
+  #myBtn{
+    /* display: none; */
+    position: fixed;
+    bottom: 20px;
+    right: 40px;
+    z-index: 10;
+    border: none;
+    color: #fff;
+    background: #272727;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  #myBtn:hover{
+    background: #606060;
+  }
+  /* *********************  footer ends ****************************** */
+  
+  
+  /* ****************** Media Queries ********************** */
+  @media (max-width: 768px) {
+    .nav-item{
+      text-align: center!important;
+    }
+    .pricing, .happyclients, .contactus{
+      height: auto;
+      margin-top: 50px;
+    }
+    .card-second{
+      transform: translateY(0px);
+      margin: 30px 0;
+    }
+    .contactus p{
+      padding: 0 50px;
+    }
+    .footer-navlinks{
+      text-align: left;
+    }
+    .footer-div{
+      margin: 30px 0;
+    }
+  }
+  

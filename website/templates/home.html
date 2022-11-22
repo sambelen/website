@@ -1,0 +1,108 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+
+<div class="w-100 text-center px-5">
+  {{summaryData}}
+ </div>
+<div class="d-flex w-100 justify-content-center">
+  <div class="w-25">
+    <form method="POST" action="/home" enctype="multipart/form-data">
+      {{form.hidden_tag()}}
+      <h5 class="text-muted mt-5">Upload Data</h5>
+      <hr class="text-muted" />
+      <div class="custom-file">
+        <input
+          type="file"
+          class="custom-file-input"
+          name="file"
+          id="customFile"
+        />
+        <label class="custom-file-label" for="customFile"
+          >Choose CSV File</label
+        >
+      </div>
+      <div class="mt-5">
+        <h5 class="text-muted">Set Date Range</h5>
+        <hr class="text-muted" />
+        <div class="form-group">
+          <label for="inputStartDate">Start Date</label>
+          <input
+            id="inputStartDate"
+            class="form-control"
+            name="startDate"
+            type="date"
+          />
+        </div>
+        <div class="form-group">
+          <label for="inputStartDate">End Date</label>
+          <input
+            id="inputStartDate"
+            class="form-control"
+            name="endDate"
+            type="date"
+          />
+        </div>
+        <div
+          class="d-flex w-100 justify-content-end"
+          style="margin-top: -20px !important"
+        >
+          <input class="btn btnKulay" type="submit" value="Submit" />
+        </div>
+      </div>
+    </form>
+    <br><br><br>
+    <div class="w-100 card mt-5">
+      <table>
+        <tr>
+          <td class="text-start">
+            MSE error:
+          </td>
+          <td>
+            {{ mseData }}
+          </td>
+        </tr>
+        <tr>
+          <td class="text-start">
+            RMSE error:
+          </td>
+          <td>
+            {{ rmseData }}
+          </td>
+        </tr>
+        <tr>
+          <td class="text-start">
+            Mean:
+          </td>
+          <td>
+            {{ meanData }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="w-75">
+    <div class="mx-3 w-100 d-flex justify-content-center mt-5">
+      <div class="w-50 card mx-1">
+        <img src="{{ url_for('static', filename='pic.png') }}" alt='data-image'>
+      </div>
+      <div class="w-50 card mx-1">
+        <img src="{{ url_for('static', filename='pic3.png') }}" alt='data-image'>
+      </div>
+    </div>
+    <div class="mx-3 w-100 card mt-2 p-2">
+      <h5 class="text-muted">Date Plot</h5>
+      <img class="w-100" src="{{ url_for('static', filename='pic2.png') }}" alt='data-image'>
+    </div>
+    <div class="mx-3 w-100 card p-2 mt-2">
+      <h5 class="text-muted">Prediction</h5>
+      <img class="w-100" src="{{ url_for('static', filename='pic4.png') }}" alt='data-image'>
+    </div>
+  </div>
+</div>
+<hr class="text-muted mt-5" />
+<h5 class="text-muted">Csv Data</h5>
+<hr class="text-muted" />
+<div class="w-100 text-center px-5">
+  {% for table in tables %} {{table | safe }} {% endfor %}
+</div>
+{% endblock %}
