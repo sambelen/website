@@ -161,7 +161,7 @@ def home():
                 print(f'MSE Error: {mse}\nRMSE Error: {rmse}\nMean: {mean}')                
                 print('araw',araw)
             except:
-                print('error')
+                print('walang data')
         else:
             print('No data')
     df = pd.read_csv('website/static/files/Burat.csv', encoding = 'latin-1')
